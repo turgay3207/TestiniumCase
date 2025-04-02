@@ -3,17 +3,22 @@ package stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.interactions.Actions;
 import pages.BeymenPage;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
+
+
 public class BeymenStepDef {
+    private static final Logger logger = LogManager.getLogger(BeymenStepDef.class);
     BeymenPage beymenPage = new BeymenPage();
     Actions actions = new Actions(Driver.getDriver());
     String urunFiyati;
@@ -22,15 +27,13 @@ public class BeymenStepDef {
 
     @Given("Kullanici {string} sitesini acar")
     public void kullanici_sitesini_acar(String url) {
+        logger.info("Web sitesi açılıyor: " + url);
         Driver.getDriver().get(url);
-
+        logger.info("Çerez kabul butonu tıklanıyor");
         beymenPage.cerezKabulButon.click();
+        logger.info("Erkek seçimi yapılıyor");
         beymenPage.erkekSecimButonu.click();
-   /*     try {
-            beymenPage.updatesNoThanksButon.click();
-        }catch (Exception e) {
-            System.out.println("Updates butonu bulunamadı");
-        } */
+
 
     }
 
@@ -125,7 +128,7 @@ public class BeymenStepDef {
 
     @Then("Sepetin bos oldugu dogrulanir")
     public void sepetin_bos_oldugu_dogrulanir() throws InterruptedException {
-        Thread.sleep(9000);
+        ReusableMethods.waitForVisibility(beymenPage.sepetBosDogrula, 9);
         Assert.assertTrue(beymenPage.sepetBosDogrula.getText().contains("SEPETINIZDE ÜRÜN BULUNMAMAKTADIR"));
     }
 
