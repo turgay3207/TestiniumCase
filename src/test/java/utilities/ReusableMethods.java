@@ -11,9 +11,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
@@ -215,7 +213,7 @@ public class ReusableMethods {
     }
 
     public static void waitAndClick(WebElement we) {
-        waitForVisibility(we, 10);
+        waitForVisibility(we, 5);
         clickWithJS(we);
     }
     public static String getDataFromExcel(String filePath, int rowNumber, int columnNumber) {
@@ -238,6 +236,36 @@ public class ReusableMethods {
             e.printStackTrace();
         }
         return cellValue;
+    }
+    public static void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+    public static void yazUrunBilgileri(String urunAdi, String urunFiyati) {
+        try {
+            // Dosya yazma işlemi
+            BufferedWriter writer = new BufferedWriter(new FileWriter("urun_bilgileri.txt"));
+            writer.write("Ürün Adı: " + urunAdi + "\n");
+            writer.write("Ürün Fiyatı: " + urunFiyati + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Dosyaya yazma hatası: " + e.getMessage());
+        }
+    }
+    public static double fiyatFormatla(String fiyat) {
+        try {
+
+            fiyat = fiyat.replaceAll("[^0-9,]", "");
+
+
+            fiyat = fiyat.replace(",", ".");
+
+
+            return Double.parseDouble(fiyat);
+        } catch (Exception e) {
+            System.out.println("Fiyat formatlama hatası: " + e.getMessage());
+            return 0.0; // Hata durumunda 0.0 döndür
+        }
     }
 }
 
