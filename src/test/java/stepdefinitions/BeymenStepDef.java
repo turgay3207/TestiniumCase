@@ -16,7 +16,6 @@ import utilities.Driver;
 import utilities.ReusableMethods;
 
 
-
 public class BeymenStepDef {
     private static final Logger logger = LogManager.getLogger(BeymenStepDef.class);
     BeymenPage beymenPage = new BeymenPage();

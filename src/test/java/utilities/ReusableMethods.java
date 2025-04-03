@@ -264,7 +264,7 @@ public class ReusableMethods {
             return Double.parseDouble(fiyat);
         } catch (Exception e) {
             System.out.println("Fiyat formatlama hatası: " + e.getMessage());
-            return 0.0; // Hata durumunda 0.0 döndür
+            return 0.0;
         }
     }
 }

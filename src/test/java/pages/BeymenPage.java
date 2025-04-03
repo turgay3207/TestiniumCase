@@ -15,8 +15,6 @@ public class BeymenPage {
 
     @FindBy(id = "genderManButton")
     public WebElement erkekSecimButonu;
-    @FindBy(xpath = "//div[@class='dn-slide-buttons horizontal']//button[@class='dn-slide-deny-btn'][normalize-space()='No Thanks']")
-    public WebElement updatesNoThanksButon;
 
     @FindBy(xpath = "//img[@alt='Beymen']")
     public WebElement beymenLogo;
@@ -64,9 +62,6 @@ public class BeymenPage {
     @FindBy(xpath = "//strong[contains(text(),'Sepetinizde Ürün Bulunmamaktadır')]")
     public WebElement sepetBosDogrula;
 
-
-    @FindBy(xpath = "//*[name()='path' and contains(@fill,'#4A4A4A')]")
-    public WebElement urunSilindiUyariKapat;
 
 
 
