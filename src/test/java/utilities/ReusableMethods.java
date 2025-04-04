@@ -15,6 +15,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
+import java.util.NoSuchElementException;
 import java.util.function.Function;
 
 import static io.restassured.RestAssured.given;
@@ -267,5 +268,20 @@ public class ReusableMethods {
             return 0.0;
         }
     }
+    public static void safeClick(WebElement element) {
+        try {
+            waitAndClick(element);
+            LoggerHelper.getLogger().info("Elemente başarıyla tıklandı: " + element);
+        } catch (StaleElementReferenceException e) {
+            LoggerHelper.getLogger().warn("StaleElementReferenceException: Element yenilenmiş olabilir. " + element);
+        } catch (TimeoutException e) {
+            LoggerHelper.getLogger().warn("TimeoutException: Element zamanında bulunamadı. " + element);
+        } catch (NoSuchElementException e) {
+            LoggerHelper.getLogger().warn("NoSuchElementException: Element bulunamadı. " + element);
+        } catch (Exception e) {
+            LoggerHelper.getLogger().warn("Bilinmeyen bir hata oluştu tıklarken: " + element + " | Hata: " + e.getMessage());
+        }
+    }
+
 }
 

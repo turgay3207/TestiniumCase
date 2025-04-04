@@ -128,7 +128,7 @@ public class BeymenStepDef {
 
     @Then("Sepetin bos oldugu dogrulanir")
     public void sepetin_bos_oldugu_dogrulanir() throws InterruptedException {
-        beymenPage.urunSilindiKapat.click();
+        ReusableMethods.safeClick(beymenPage.urunSilindiKapat);
         ReusableMethods.waitForVisibility(beymenPage.sepetBosDogrula, 9);
         Assert.assertTrue(beymenPage.sepetBosDogrula.getText().contains("SEPETINIZDE ÜRÜN BULUNMAMAKTADIR"));
     }
