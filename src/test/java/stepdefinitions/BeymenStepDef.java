@@ -123,10 +123,12 @@ public class BeymenStepDef {
     @When("Kullanici urunu sepetten siler")
     public void kullanici_urunu_sepetten_siler() {
         beymenPage.sepetiSilButonu.click();
+
     }
 
     @Then("Sepetin bos oldugu dogrulanir")
     public void sepetin_bos_oldugu_dogrulanir() throws InterruptedException {
+        beymenPage.urunSilindiKapat.click();
         ReusableMethods.waitForVisibility(beymenPage.sepetBosDogrula, 9);
         Assert.assertTrue(beymenPage.sepetBosDogrula.getText().contains("SEPETINIZDE ÜRÜN BULUNMAMAKTADIR"));
     }

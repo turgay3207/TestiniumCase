@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
         monochrome = true,
         publish = true,
         dryRun = false,
-        tags = "@trelloapi"  //trelloapi ----- beymen
+        tags = "@beymen"  //trelloapi ----- beymen
 
 )
 public class Runner{

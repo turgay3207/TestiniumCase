@@ -63,6 +63,8 @@ public class BeymenPage {
     public WebElement sepetBosDogrula;
 
 
+    @FindBy(xpath = "//button[@class='m-notification__close']")
+    public WebElement urunSilindiKapat;
 
 
 }

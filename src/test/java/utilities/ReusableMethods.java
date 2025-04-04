@@ -213,7 +213,7 @@ public class ReusableMethods {
     }
 
     public static void waitAndClick(WebElement we) {
-        waitForVisibility(we, 5);
+        waitForVisibility(we, 1);
         clickWithJS(we);
     }
     public static String getDataFromExcel(String filePath, int rowNumber, int columnNumber) {
